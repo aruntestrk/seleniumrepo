@@ -1,0 +1,24 @@
+<configuration>
+
+ <appender name="TIME_BASED_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>c:/logs/timeBasedlogFile.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">        
+        <!-- daily rollover -->
+        <fileNamePattern>c:/logs/timeBasedlogFile.%d{yyyy-MM-dd-HH-mm}.log</fileNamePattern>
+        <maxHistory>30</maxHistory>
+    </rollingPolicy>
+ 
+    <encoder>
+        <pattern>%relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+    </encoder>
+</appender>   
+
+<logger name="timeBased" level="INFO">
+    <appender-ref ref="TIME_BASED_FILE" />
+    <appender-ref ref="STDOUT" />
+</logger>
+
+  <root level="INFO">
+    <appender-ref ref="TIME_BASED_FILE" />
+  </root>
+</configuration>
